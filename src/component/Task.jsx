@@ -13,8 +13,10 @@ export default function Task({ title }) {
         deleteTask(task.title);
     }
 
+    const setDraggedTask = useStore((store) => store.setDraggedTask)
+
     return (
-    <div className="task">
+    <div className="task" draggable onDragStart={() => {setDraggedTask(task.title)}}>
         <div>{task.title}</div>
         <div className="bottomWrapper">
             <button onClick={handleDelete}>Delete</button>
