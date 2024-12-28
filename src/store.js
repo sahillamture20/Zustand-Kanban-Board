@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 const store = (set) => ({
-  tasks: [{ title: "Test Task", state: "DONE" }],
+  tasks: [],
   draggedTask: null,
   
   /*Fix: By wrapping the updated state in parentheses or explicitly defining it as an object ({}),
