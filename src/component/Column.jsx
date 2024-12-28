@@ -4,10 +4,12 @@ import { useStore } from "../store";
 import "./Column.css";
 import Task from "./Task";
 import { useState, useMemo } from "react";
+import classNames from "classnames";
 
 export default function Column({ state }) {
   const [text, setText] = useState("");
   const [open, setOpen] = useState(false);
+  const [drop, setDrop] = useState(false); //to check whether we can drop the task in onto specific column
 
   const tasks = useStore((store) => store.tasks, shallow);
   //   console.log(tasks)
@@ -40,12 +42,18 @@ export default function Column({ state }) {
   };
   return (
     <div 
-        className="column"
-        onDragOver={(e) => e.preventDefault()}
+        className={classNames("column", {drop: drop})}
+        onDragOver={(e) => {
+            setDrop(true);
+            e.preventDefault()}}
+        onDragLeave={(e) => {
+            setDrop(false);
+            e.preventDefault()}}
         onDrop={() => {
-        setDraggedTask(null);
+            setDrop(false);
+            setDraggedTask(null);
         // console.log(draggedTask)
-        moveTask(draggedTask, state);
+            moveTask(draggedTask, state);
     }
         }
     >

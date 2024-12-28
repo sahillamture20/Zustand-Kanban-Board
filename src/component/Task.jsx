@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import classNames from "classnames";
 import { useStore } from "../store";
 import "./Task.css"
 
@@ -20,7 +21,7 @@ export default function Task({ title }) {
         <div>{task.title}</div>
         <div className="bottomWrapper">
             <button onClick={handleDelete}>Delete</button>
-            <div className='status'>{task.state}</div>
+            <div className={classNames('status', task.state)}>{task.state}</div>
         </div>
     </div>
 )

@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 const store = (set) => ({
   tasks: [{ title: "Test Task", state: "DONE" }],
@@ -18,4 +19,4 @@ const store = (set) => ({
    }))
 }); 
 
-export const useStore = create(store);
+export const useStore = create(persist(store, {name: 'store'}));
